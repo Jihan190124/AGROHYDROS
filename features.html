@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroHydros Features</title>
+    <style>
+        :root {
+            --bg-color: #171D31;
+            --text-color: white;
+            --nav-bg: #222845;
+            --card-bg: #1F263F;
+            --btn-bg: #D6B835;
+            --btn-hover: #B89E2D;
+        }
+
+        body { background: var(--bg-color); color: var(--text-color); font-family: Arial, sans-serif; margin: 0; padding: 0; text-align: center; }
+        
+        header { background: var(--nav-bg); padding: 20px; font-size: 24px; }
+        nav { display: flex; justify-content: center; background: var(--nav-bg); padding: 10px; }
+        nav a { color: white; text-decoration: none; padding: 10px 20px; margin: 0 10px; transition: 0.3s; }
+        nav a:hover { background: var(--btn-bg); border-radius: 5px; }
+        .container { display: flex; flex-wrap: wrap; justify-content: center; padding: 40px; }
+        .feature-box { width: 300px; padding: 20px; margin: 15px; background: var(--card-bg); border-radius: 10px; text-align: center; }
+        .feature-box img { width: 80px; margin-bottom: 10px; }
+        .btn { background: var(--btn-bg); color: black; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-size: 18px; display: inline-block; margin-top: 20px; cursor: pointer; border: none; }
+        .btn:hover { background: var(--btn-hover); }
+        footer { background: var(--nav-bg); text-align: center; padding: 10px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <header>Key Features of AgroHydros</header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+    <section class="container">
+        <div class="feature-box">
+            <img src="https://img.icons8.com/ios-filled/100/D6B835/environment.png" alt="Eco-Friendly">
+            <h3>🌱 Smart Soil Monitoring</h3>
+            <p>Uses real-time sensors to optimize irrigation.</p>
+        </div>
+        <div class="feature-box">
+            <img src="https://img.icons8.com/ios-filled/100/D6B835/wifi.png" alt="Remote Control">
+            <h3>📡 Wi-Fi Connectivity</h3>
+            <p>Control irrigation remotely via a mobile app.</p>
+        </div>
+        <div class="feature-box">
+            <img src="https://img.icons8.com/ios-filled/100/D6B835/water.png" alt="Water Conservation">
+            <h3>💧 Water Conservation</h3>
+            <p>Reduces water wastage by delivering precise irrigation.</p>
+        </div>
+        <div class="feature-box">
+            <img src="https://img.icons8.com/ios-filled/100/D6B835/graph.png" alt="Data Analysis">
+            <h3>📊 Real-Time Data</h3>
+            <p>Live soil moisture readings displayed on an LCD and app dashboard.</p>
+        </div>
+        <div class="feature-box">
+            <img src="https://img.icons8.com/ios-filled/100/D6B835/money-bag.png" alt="Cost Efficient">
+            <h3>💰 Cost Efficient</h3>
+            <p>Affordable pricing starting at ₹2000, making automation accessible.</p>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2025 AgroHydros. All Rights Reserved.
+    </footer>
+
+</body>
+</html>

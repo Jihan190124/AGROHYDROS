@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroHydros</title>
+    <style>
+        :root {
+            --bg-color: #171D31;
+            --text-color: white;
+            --nav-bg: #222845;
+            --card-bg: #1F263F;
+            --btn-bg: #D6B835;
+            --btn-hover: #B89E2D;
+        }
+
+        body { background: var(--bg-color); color: var(--text-color); font-family: Arial, sans-serif; margin: 0; padding: 0; text-align: center; }
+        
+        /* Loading Screen */
+        #loading-screen { position: fixed; width: 100%; height: 100vh; background: var(--bg-color); display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 999; }
+        .logo { width: 150px; }
+        h2 { margin-top: 20px; }
+
+        /* Main Content (Initially Hidden) */
+        #main-content { display: none; }
+
+        header { background: var(--nav-bg); padding: 20px; font-size: 24px; }
+        nav { display: flex; justify-content: center; background: var(--nav-bg); padding: 10px; }
+        nav a { color: white; text-decoration: none; padding: 10px 20px; margin: 0 10px; transition: 0.3s; }
+        nav a:hover { background: var(--btn-bg); border-radius: 5px; }
+        .hero { text-align: center; padding: 50px 20px; background: url('https://source.unsplash.com/1600x900/?farm,irrigation') center/cover; color: white; }
+        .hero h1 { font-size: 40px; text-shadow: 2px 2px 8px rgba(0,0,0,0.7); }
+        .hero p { font-size: 18px; margin-top: 10px; }
+        .btn { background: var(--btn-bg); color: black; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-size: 18px; display: inline-block; margin-top: 20px; cursor: pointer; border: none; }
+        .btn:hover { background: var(--btn-hover); }
+        .features { display: flex; justify-content: center; flex-wrap: wrap; padding: 40px; }
+        .feature-box { width: 300px; padding: 20px; margin: 15px; background: var(--card-bg); border-radius: 10px; text-align: center; }
+        .feature-box img { width: 80px; margin-bottom: 10px; }
+        footer { background: var(--nav-bg); text-align: center; padding: 10px; margin-top: 20px; }
+
+    </style>
+    <script>
+        // Hide the loading screen after 3 seconds
+        setTimeout(function() {
+            document.getElementById("loading-screen").style.display = "none";
+            document.getElementById("main-content").style.display = "block";
+        }, 3000);
+    </script>
+</head>
+<body>
+
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <img src="THE AGROHYDROS.png" alt="AgroHydros Logo" class="logo">
+        <h2>Loading AgroHydros...</h2>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content">
+        <header>AgroHydros – Smarter Irrigation for a Sustainable Future</header>
+        
+        <nav>
+            <a href="features.html">Features</a>
+            <a href="pricing.html">Pricing</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+
+        <section class="hero">
+            <h1>Revolutionizing Smart Irrigation</h1>
+            <p>Optimizing water usage with AI-driven automation.</p>
+            <button class="btn">Explore Features</button>
+        </section>
+
+        <section class="features">
+            <div class="feature-box">
+                <img src="https://img.icons8.com/ios-filled/100/D6B835/environment.png" alt="Eco-Friendly">
+                <h3>🌱 Smart Soil Monitoring</h3>
+                <p>Real-time soil moisture tracking with precision irrigation.</p>
+            </div>
+            <div class="feature-box">
+                <img src="https://img.icons8.com/ios-filled/100/D6B835/wifi.png" alt="Remote Control">
+                <h3>📡 Wi-Fi Connectivity</h3>
+                <p>Control and monitor your irrigation remotely via a mobile app.</p>
+            </div>
+            <div class="feature-box">
+                <img src="https://img.icons8.com/ios-filled/100/D6B835/water.png" alt="Water Conservation">
+                <h3>💧 Water Conservation</h3>
+                <p>Reduces water wastage by delivering precise irrigation.</p>
+            </div>
+        </section>
+
+        <footer>
+            &copy; 2025 AgroHydros. All Rights Reserved.
+        </footer>
+    </div>
+
+</body>
+</html>

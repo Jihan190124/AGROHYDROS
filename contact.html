@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact AgroHydros</title>
+    <style>
+        :root {
+            --bg-color: #171D31;
+            --text-color: white;
+            --nav-bg: #222845;
+            --card-bg: #1F263F;
+            --btn-bg: #D6B835;
+            --btn-hover: #B89E2D;
+        }
+
+        body { background: var(--bg-color); color: var(--text-color); font-family: Arial, sans-serif; margin: 0; padding: 0; text-align: center; }
+        
+        header { background: var(--nav-bg); padding: 20px; font-size: 24px; }
+        nav { display: flex; justify-content: center; background: var(--nav-bg); padding: 10px; }
+        nav a { color: white; text-decoration: none; padding: 10px 20px; margin: 0 10px; transition: 0.3s; }
+        nav a:hover { background: var(--btn-bg); border-radius: 5px; }
+        
+        .container { width: 90%; max-width: 450  px; margin: auto; padding: 20px; background: var(--card-bg); border-radius: 10px; }
+        input, textarea { width:90%; padding: 12px; border-radius: 5px; margin-bottom: 10px; border: 1px solid var(--btn-bg); background: #222845; color: white; font-size: 16px; }
+        textarea { height: 100px; resize: none; } /* Fixed height and removed resizing */
+        input::placeholder, textarea::placeholder { color: #D6B835; opacity: 0.8; }
+        
+        button { background: var(--btn-bg); color: black; padding: 12px; border-radius: 5px; cursor: pointer; width: 100%; font-size: 16px; border: none; }
+        button:hover { background: var(--btn-hover); }
+        
+        .contact-info { margin-top: 20px; padding: 20px; background: var(--card-bg); border-radius: 10px; text-align: center; }
+        
+        footer { background: var(--nav-bg); text-align: center; padding: 10px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <header>Contact AgroHydros</header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="features.html">Features</a>
+        <a href="pricing.html">Pricing</a>
+    </nav>
+
+    <div class="container">
+        <h2>📩 Get in Touch</h2>
+        <form>
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+
+    <div class="contact-info">
+        <h3>📍 Our Location</h3>
+        <p>123 Agro Street, Green City, India</p>
+        <h3>📞 Call Us</h3>
+        <p>+91 98765 43210</p>
+        <h3>✉ Email</h3>
+        <p>support@agrohydros.com</p>
+    </div>
+
+    <footer>
+        &copy; 2025 AgroHydros. All Rights Reserved.
+    </footer>
+
+</body>
+</html>
