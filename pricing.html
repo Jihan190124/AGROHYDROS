@@ -1,120 +1,225 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js";
+    import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-firestore.js";
 
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-    apiKey: "AIzaSyCL_OeCQjVE6oZw85HmCIalSZfRpCSlS-o",
-    authDomain: "agrohydros-f9bd4.firebaseapp.com",
-    projectId: "agrohydros-f9bd4",
-    storageBucket: "agrohydros-f9bd4.firebasestorage.app",
-    messagingSenderId: "713838309214",
-    appId: "1:713838309214:web:68b865c926df7a0272a9cf",
-    measurementId: "G-FDT84LQNJG"
-  };
+    const firebaseConfig = {
+      apiKey: "AIzaSyCL_OeCQjVE6oZw85HmCIalSZfRpCSlS-o",
+      authDomain: "agrohydros-f9bd4.firebaseapp.com",
+      projectId: "agrohydros-f9bd4",
+      storageBucket: "agrohydros-f9bd4.firebasestorage.app",
+      messagingSenderId: "713838309214",
+      appId: "1:713838309214:web:68b865c926df7a0272a9cf",
+      measurementId: "G-FDT84LQNJG"
+    };
 
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-</script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AgroHydros Pricing</title>
-    <style>
-        :root {
-            --bg-color: #171D31;
-            --text-color: white;
-            --nav-bg: #222845;
-            --card-bg: #1F263F;
-            --btn-bg: #D6B835;
-            --btn-hover: #B89E2D;
-        }
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
 
-        body { background: var(--bg-color); color: var(--text-color); font-family: Arial, sans-serif; margin: 0; padding: 0; text-align: center; }
-        
-        header { background: var(--nav-bg); padding: 20px; font-size: 24px; }
-        nav { display: flex; justify-content: center; background: var(--nav-bg); padding: 10px; }
-        nav a { color: white; text-decoration: none; padding: 10px 20px; margin: 0 10px; transition: 0.3s; }
-        nav a:hover { background: var(--btn-bg); border-radius: 5px; }
+    // Expose Firestore to window for inline scripts
+    window.db = db;
+    window.collection = collection;
+    window.addDoc = addDoc;
+    window.serverTimestamp = serverTimestamp;
+  </script>
 
-        .pricing-container { display: flex; justify-content: center; flex-wrap: wrap; padding: 40px; }
-        .pricing-box { width: 300px; padding: 20px; margin: 15px; background: var(--card-bg); border-radius: 10px; text-align: center; }
-        .pricing-box h2 { color: var(--btn-bg); }
-        .price { font-size: 18px; color: var(--btn-bg); font-weight: bold; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AgroHydros Pricing</title>
 
-        .btn { background: var(--btn-bg); color: black; padding: 10px 20px; border-radius: 5px; cursor: pointer; border: none; font-size: 16px; margin-top: 10px; }
-        .btn:hover { background: var(--btn-hover); }
+  <style>
+    :root {
+      --bg-color: #171D31;
+      --text-color: white;
+      --nav-bg: #222845;
+      --card-bg: #1F263F;
+      --btn-bg: #D6B835;
+      --btn-hover: #B89E2D;
+    }
 
-        .cart { text-align: center; margin-top: 20px; padding: 20px; background: var(--card-bg); border-radius: 10px; max-width: 400px; margin: auto; }
-        .quote-form { text-align: center; margin-top: 20px; padding: 20px; background: var(--card-bg); border-radius: 10px; max-width: 400px; margin: auto; }
-        input, select { width: 100%; padding: 10px; margin-top: 10px; border-radius: 5px; border: 1px solid var(--btn-bg); background: #222845; color: white; }
-        input::placeholder, select { color: #D6B835; }
-    </style>
-    <script>
-        function requestQuote() {
-            let name = document.getElementById("name").value;
-            let email = document.getElementById("email").value;
-            let requirement = document.getElementById("requirement").value;
+    body {
+      background: var(--bg-color);
+      color: var(--text-color);
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
 
-            if (name && email && requirement) {
-                alert("Thank you, " + name + "! We will contact you soon with a custom quote.");
-            } else {
-                alert("Please fill in all details to request a quote.");
-            }
-        }
-    </script>
+    header {
+      background: var(--nav-bg);
+      padding: 20px;
+      font-size: 24px;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      background: var(--nav-bg);
+      padding: 10px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      margin: 0 10px;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      background: var(--btn-bg);
+      border-radius: 5px;
+    }
+
+    .pricing-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 40px;
+    }
+
+    .pricing-box {
+      width: 300px;
+      padding: 20px;
+      margin: 15px;
+      background: var(--card-bg);
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .pricing-box h2 {
+      color: var(--btn-bg);
+    }
+
+    .price {
+      font-size: 18px;
+      color: var(--btn-bg);
+      font-weight: bold;
+    }
+
+    .btn {
+      background: var(--btn-bg);
+      color: black;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      border: none;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+
+    .btn:hover {
+      background: var(--btn-hover);
+    }
+
+    .quote-form {
+      text-align: center;
+      margin-top: 20px;
+      padding: 20px;
+      background: var(--card-bg);
+      border-radius: 10px;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 5px;
+      border: 1px solid var(--btn-bg);
+      background: #222845;
+      color: white;
+    }
+
+    input::placeholder,
+    select {
+      color: #D6B835;
+    }
+
+    footer {
+      margin-top: 40px;
+      padding: 15px;
+      background: var(--nav-bg);
+      color: var(--btn-bg);
+      font-size: 14px;
+    }
+  </style>
 </head>
+
 <body>
+  <header>AgroHydros Pricing</header>
 
-    <header>AgroHydros Pricing</header>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="features.html">Features</a>
+    <a href="contact.html">Contact</a>
+  </nav>
 
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="features.html">Features</a>
-        <a href="contact.html">Contact</a>
-    </nav>
-
-    <section class="pricing-container">
-        <div class="pricing-box">
-            <h2>🌱 Base System</h2>
-            <p>Complete irrigation system for single plants.</p>
-            <p class="price">Affordable & Custom Pricing</p>
-
-        </div>
-        <div class="pricing-box">
-            <h2>🔧 Extra Add-Ons</h2>
-            <p>Additional sensors & pumps for enhanced irrigation.</p>
-            <p class="price">Tailored to Your Needs</p>
-        </div>
-    </section>
-
-    <div class="quote-form" id="quote-section">
-        <h3>📩 Request a Custom Quote</h3>
-        <p>Tell us your needs, and we’ll provide the best pricing for you!</p>
-        <input type="text" id="name" placeholder="Your Name" required>
-        <input type="email" id="email" placeholder="Your Email" required>
-        <select id="requirement">
-            <option value="">Select Your Requirement</option>
-            <option value="Base System">Base System</option>
-            <option value="Extra Sensors & Pumps">Extra Sensors & Pumps</option>
-            <option value="Full Automation">Full Automation</option>
-
-        </select>
-        <button class="btn" onclick="requestQuote()">Submit Request</button>
-        <button class="btn" onclick="requestQuote()">Submit Request</button>
-
+  <section class="pricing-container">
+    <div class="pricing-box">
+      <h2>🌱 Base System</h2>
+      <p>Complete irrigation system for single plants.</p>
+      <p class="price">Affordable & Custom Pricing</p>
     </div>
+    <div class="pricing-box">
+      <h2>🔧 Extra Add-Ons</h2>
+      <p>Additional sensors & pumps for enhanced irrigation.</p>
+      <p class="price">Tailored to Your Needs</p>
+    </div>
+  </section>
 
-    <footer>
-        &copy; 2025 AgroHydros. All Rights Reserved.
-    </footer>
+  <div class="quote-form" id="quote-section">
+    <h3>📩 Request a Custom Quote</h3>
+    <p>Tell us your needs, and we’ll provide the best pricing for you!</p>
+    <input type="text" id="name" placeholder="Your Name" required />
+    <input type="email" id="email" placeholder="Your Email" required />
+    <select id="requirement" required>
+      <option value="">Select Your Requirement</option>
+      <option value="Base System">Base System</option>
+      <option value="Extra Sensors & Pumps">Extra Sensors & Pumps</option>
+      <option value="Full Automation">Full Automation</option>
+    </select>
+    <button class="btn" onclick="requestQuote()">Submit Request</button>
+  </div>
 
+  <footer>&copy; 2025 AgroHydros. All Rights Reserved.</footer>
+
+  <script>
+    async function requestQuote() {
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const requirement = document.getElementById("requirement").value;
+
+      if (!name || !email || !requirement) {
+        alert("Please fill in all details to request a quote.");
+        return;
+      }
+
+      try {
+        await addDoc(collection(db, "quotes"), {
+          name: name,
+          email: email,
+          requirement: requirement,
+          submittedAt: serverTimestamp(),
+        });
+
+        alert(`Thank you, ${name}! We have received your request and will contact you soon.`);
+
+        // Clear the form inputs
+        document.getElementById("name").value = "";
+        document.getElementById("email").value = "";
+        document.getElementById("requirement").value = "";
+      } catch (error) {
+        console.error("Error submitting quote:", error);
+        alert("Sorry, something went wrong. Please try again later.");
+      }
+    }
+  </script>
 </body>
 </html>
