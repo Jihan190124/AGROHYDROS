@@ -179,6 +179,7 @@
     <p>Tell us your needs, and we’ll provide the best pricing for you!</p>
     <input type="text" id="name" placeholder="Your Name" required />
     <input type="email" id="email" placeholder="Your Email" required />
+      <input type="tel" id="mobile" placeholder="Your Mobile Number" required pattern="[0-9]{10}" title="Enter a 10-digit mobile number" />
     <select id="requirement" required>
       <option value="">Select Your Requirement</option>
       <option value="Base System">Base System</option>
@@ -194,17 +195,23 @@
     async function requestQuote() {
       const name = document.getElementById("name").value.trim();
       const email = document.getElementById("email").value.trim();
+        const mobile = document.getElementById("mobile").value.trim();
       const requirement = document.getElementById("requirement").value;
 
       if (!name || !email || !requirement) {
         alert("Please fill in all details to request a quote.");
         return;
+        
       }
-
+    if (!/^\d{10}$/.test(mobile)) {
+    alert("Please enter a valid 10-digit mobile number.");
+    return;
+                                     }
       try {
         await addDoc(collection(db, "quotes"), {
           name: name,
           email: email,
+          mobile: mobile,
           requirement: requirement,
           submittedAt: serverTimestamp(),
         });
@@ -214,6 +221,7 @@
         // Clear the form inputs
         document.getElementById("name").value = "";
         document.getElementById("email").value = "";
+            document.getElementById("mobile").value = "";
         document.getElementById("requirement").value = "";
       } catch (error) {
         console.error("Error submitting quote:", error);
