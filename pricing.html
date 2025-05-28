@@ -1,6 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyCL_OeCQjVE6oZw85HmCIalSZfRpCSlS-o",
+    authDomain: "agrohydros-f9bd4.firebaseapp.com",
+    projectId: "agrohydros-f9bd4",
+    storageBucket: "agrohydros-f9bd4.firebasestorage.app",
+    messagingSenderId: "713838309214",
+    appId: "1:713838309214:web:68b865c926df7a0272a9cf",
+    measurementId: "G-FDT84LQNJG"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AgroHydros Pricing</title>
@@ -82,8 +105,11 @@
             <option value="Base System">Base System</option>
             <option value="Extra Sensors & Pumps">Extra Sensors & Pumps</option>
             <option value="Full Automation">Full Automation</option>
+
         </select>
         <button class="btn" onclick="requestQuote()">Submit Request</button>
+        <button class="btn" onclick="requestQuote()">Submit Request</button>
+
     </div>
 
     <footer>
