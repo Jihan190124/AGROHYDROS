@@ -1,73 +1,181 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact AgroHydros</title>
-    <style>
-        :root {
-            --bg-color: #171D31;
-            --text-color: white;
-            --nav-bg: #222845;
-            --card-bg: #1F263F;
-            --btn-bg: #D6B835;
-            --btn-hover: #B89E2D;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact AgroHydros</title>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
 
-        body { background: var(--bg-color); color: var(--text-color); font-family: Arial, sans-serif; margin: 0; padding: 0; text-align: center; }
-        
-        header { background: var(--nav-bg); padding: 20px; font-size: 24px; }
-        nav { display: flex; justify-content: center; background: var(--nav-bg); padding: 10px; }
-        nav a { color: white; text-decoration: none; padding: 10px 20px; margin: 0 10px; transition: 0.3s; }
-        nav a:hover { background: var(--btn-bg); border-radius: 5px; }
-        
-        .container { width: 90%; max-width: 450px; margin: auto; padding: 20px; background: var(--card-bg); border-radius: 10px; }
-        input, textarea { width: 90%; padding: 12px; border-radius: 5px; margin-bottom: 10px; border: 1px solid var(--btn-bg); background: #222845; color: white; font-size: 16px; }
-        textarea { height: 100px; resize: none; }
-        input::placeholder, textarea::placeholder { color: #D6B835; opacity: 0.8; }
-        
-        button { background: var(--btn-bg); color: black; padding: 12px; border-radius: 5px; cursor: pointer; width: 100%; font-size: 16px; border: none; }
-        button:hover { background: var(--btn-hover); }
-        
-        .contact-info { margin-top: 20px; padding: 20px; background: var(--card-bg); border-radius: 10px; text-align: center; }
-        .contact-info a { color: #D6B835; text-decoration: none; font-weight: bold; }
-        .contact-info a:hover { text-decoration: underline; }
-        
-        footer { background: var(--nav-bg); text-align: center; padding: 10px; margin-top: 20px; }
-    </style>
+  <style>
+    :root {
+      --bg-color: #171D31;
+      --text-color: white;
+      --nav-bg: #222845;
+      --card-bg: #1F263F;
+      --btn-bg: #D6B835;
+      --btn-hover: #B89E2D;
+    }
+    body {
+      background: var(--bg-color);
+      color: var(--text-color);
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    header {
+      background: var(--nav-bg);
+      padding: 20px;
+      font-size: 24px;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      background: var(--nav-bg);
+      padding: 10px;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      margin: 0 10px;
+      transition: 0.3s;
+    }
+    nav a:hover {
+      background: var(--btn-bg);
+      border-radius: 5px;
+    }
+    .container {
+      width: 90%;
+      max-width: 450px;
+      margin: auto;
+      padding: 20px;
+      background: var(--card-bg);
+      border-radius: 10px;
+    }
+    input, textarea {
+      width: 90%;
+      padding: 12px;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      border: 1px solid var(--btn-bg);
+      background: #222845;
+      color: white;
+      font-size: 16px;
+    }
+    textarea {
+      height: 100px;
+      resize: none;
+    }
+    input::placeholder, textarea::placeholder {
+      color: #D6B835;
+      opacity: 0.8;
+    }
+    button {
+      background: var(--btn-bg);
+      color: black;
+      padding: 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+      font-size: 16px;
+      border: none;
+    }
+    button:hover {
+      background: var(--btn-hover);
+    }
+    .contact-info {
+      margin-top: 20px;
+      padding: 20px;
+      background: var(--card-bg);
+      border-radius: 10px;
+      text-align: center;
+    }
+    .contact-info a {
+      color: #D6B835;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .contact-info a:hover {
+      text-decoration: underline;
+    }
+    footer {
+      background: var(--nav-bg);
+      text-align: center;
+      padding: 10px;
+      margin-top: 20px;
+    }
+  </style>
 </head>
 <body>
 
-    <header>Contact AgroHydros</header>
+<header>Contact AgroHydros</header>
+<nav>
+  <a href="index.html">Home</a>
+  <a href="features.html">Features</a>
+  <a href="pricing.html">Pricing</a>
+</nav>
 
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="features.html">Features</a>
-        <a href="pricing.html">Pricing</a>
-    </nav>
+<div class="container">
+  <h2>📩 Get in Touch</h2>
+  <form id="contactForm">
+    <input type="text" id="name" placeholder="Your Name" required>
+    <input type="email" id="email" placeholder="Your Email" required>
+    <input type="tel" id="phone" placeholder="Your Mobile Number" required>
+    <textarea id="message" placeholder="Your Message" required></textarea>
+    <button type="submit">Send Message</button>
+  </form>
+  <p id="statusMessage"></p>
+</div>
 
-    <div class="container">
-        <h2>📩 Get in Touch</h2>
-        <form>
-            <input type="text" placeholder="Your Name" required>
-            <input type="email" placeholder="Your Email" required>
-            <textarea placeholder="Your Message" required></textarea>
-            <button type="submit">Send Message</button>
-        </form>
-    </div>
+<div class="contact-info">
+  <h3>📍 Our Location</h3>
+  <p>Ahmedabad, Gujarat, India - 382481</p>
+  <h3>📞 Call Us</h3>
+  <p>+91 81608 19720</p>
+  <h3>✉ Email</h3>
+  <p><a href="mailto:jihanbhagat@gmail.com">jihanbhagat@gmail.com</a></p>
+</div>
 
-    <div class="contact-info">
-        <h3>📍 Our Location</h3>
-        <p>Ahmedabad, Gujarat, India - 382481</p>
-        <h3>📞 Call Us</h3>
-        <p>+91 81608 19720</p>
-        <h3>✉ Email</h3>
-        <p><a href="mailto:jihanbhagat@gmail.com">jihanbhagat@gmail.com</a></p>
-    </div>
+<footer>&copy; 2025 AgroHydros. All Rights Reserved.</footer>
 
-    <footer>
-        &copy; 2025 AgroHydros. All Rights Reserved.
-    </footer>
+<script>
+  const firebaseConfig = {
+   apiKey: "AIzaSyCL_OeCQjVE6oZw85HmCIalSZfRpCSlS-o",
+      authDomain: "agrohydros-f9bd4.firebaseapp.com",
+      projectId: "agrohydros-f9bd4",
+      storageBucket: "agrohydros-f9bd4.firebasestorage.app",
+      messagingSenderId: "713838309214",
+      appId: "1:713838309214:web:68b865c926df7a0272a9cf",
+      measurementId: "G-FDT84LQNJG"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+
+  document.getElementById('contactForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const message = document.getElementById("message").value.trim();
+
+    db.collection("contacts").add({
+      name,
+      email,
+      phone,
+      message,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    }).then(() => {
+      document.getElementById("statusMessage").innerText = "✅ Message Sent!";
+      document.getElementById("contactForm").reset();
+    }).catch((error) => {
+      document.getElementById("statusMessage").innerText = "❌ Error sending message.";
+      console.error("Error: ", error);
+    });
+  });
+</script>
 
 </body>
 </html>
