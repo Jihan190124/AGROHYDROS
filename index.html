@@ -1,221 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AgroHydros</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet" />
-    <style>
-        :root {
-            /* Base Colors */
-            --color-bg: #ffffff;
-            --color-text: #6b7280;
-            --color-heading: #111827;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AgroHydros</title>
 
-            /* Primary Theme */
-            --color-accent: #0d9488;
-            --color-accent-light: #ccfbf1;
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
 
-            /* Additional Accents */
-            --color-orange: #0b2d5d;
-            --color-orange-light: #ffedd5;
-            --color-blue: #2563eb;
-            --color-blue-light: #dbeafe;
-            --color-lime: #84cc16;
-            --color-lime-light: #ecfccb;
+  <!-- Orbitron Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet" />
 
-            /* Button Colors */
-            --color-btn-bg: var(--color-orange);
-            --color-btn-bg-hover: #ea580c;
-            --color-btn-text: #ffffff;
+  <style>
+    :root {
+      --color-bg: #ffffff;
+      --color-text: #6b7280;
+      --color-heading: #111827;
+      --color-accent: #0d9488;
+      --color-accent-light: #ccfbf1;
+      --color-orange: #0b2d5d;
+      --color-orange-light: #ffedd5;
+      --color-blue: #2563eb;
+      --color-blue-light: #dbeafe;
+      --color-lime: #84cc16;
+      --color-lime-light: #ecfccb;
+      --color-btn-bg: var(--color-orange);
+      --color-btn-bg-hover: #ea580c;
+      --color-btn-text: #ffffff;
+      --color-nav-link: var(--color-blue);
+      --color-nav-link-hover: #333538;
+      --color-shadow-light: rgba(13, 148, 136, 0.12);
+      --color-shadow-subtle: rgba(0, 0, 0, 0.05);
+      --color-border: #e5e7eb;
+      --border-radius: 0.75rem;
+      --max-width: 1200px;
+      --transition: 0.3s ease;
+    }
 
-            /* Navigation */
-            --color-nav-link: var(--color-blue);
-            --color-nav-link-hover: #333538;
+    body {
+      background: var(--color-bg);
+      color: var(--color-text);
+      font-family: 'Orbitron', sans-serif;
+    }
 
-            /* Shadows & Borders */
-            --color-shadow-light: rgba(13, 148, 136, 0.12);
-            --color-shadow-subtle: rgba(0, 0, 0, 0.05);
-            --color-border: #e5e7eb;
+    #loading-screen {
+      position: fixed;
+      width: 100%;
+      height: 100vh;
+      background: linear-gradient(135deg, var(--color-accent-light), var(--color-blue-light));
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
 
-            --border-radius: 0.75rem;
-            --max-width: 1200px;
-            --transition: 0.3s ease;
-        }
+    .logo {
+      width: 140px;
+      filter: drop-shadow(0 0 10px var(--color-accent));
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    #main-content {
+      display: none;
+    }
 
-        body {
-            background: var(--color-bg);
-            color: var(--color-text);
-            font-family: 'Orbitron', sans-serif;
-            text-align: center;
-        }
+    header {
+      background: var(--color-blue-light);
+      padding: 20px;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--color-blue);
+      letter-spacing: 1.5px;
+      box-shadow: 0 4px 12px var(--color-shadow-light);
+      text-align: center;
+    }
 
-        #loading-screen {
-            position: fixed;
-            width: 100%;
-            height: 100vh;
-            background: linear-gradient(135deg, var(--color-accent-light), var(--color-blue-light));
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 999;
-        }
+    nav a {
+      color: var(--color-nav-link) !important;
+      text-decoration: none;
+      margin: 0 10px;
+      transition: var(--transition);
+    }
 
-        .logo {
-            width: 180px;
-            filter: drop-shadow(0 0 10px var(--color-accent));
-        }
+    nav a:hover {
+      background: var(--color-nav-link-hover);
+      color: #fff !important;
+      border-radius: 8px;
+      padding: 6px 12px;
+    }
 
-        h2 {
-            margin-top: 20px;
-            font-size: 1.5rem;
-            color: var(--color-accent);
-        }
+    .hero {
+      background: linear-gradient(to bottom, #111827, #1f2937);
+      color: #fff;
+      padding: 80px 20px;
+      text-align: center;
+    }
 
-        #main-content {
-            display: none;
-        }
+    .hero h1 {
+      font-size: 2.5rem;
+      text-shadow: 0 0 12px var(--color-orange);
+    }
 
-        header {
-            background: var(--color-blue-light);
-            padding: 20px;
-            font-size: 26px;
-            font-weight: 700;
-            color: var(--color-blue);
-            letter-spacing: 2px;
-            box-shadow: 0 4px 12px var(--color-shadow-light);
-        }
+    .hero p {
+      font-size: 1.1rem;
+      margin-top: 15px;
+      color: #e5e7eb;
+    }
 
-        nav {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            background: var(--color-blue-light);
-            padding: 15px;
-        }
+    .btn-custom {
+      background-color: var(--color-btn-bg);
+      color: var(--color-btn-text);
+      padding: 12px 28px;
+      border-radius: var(--border-radius);
+      font-weight: bold;
+      box-shadow: 0 0 12px var(--color-orange-light);
+      transition: background var(--transition);
+      text-decoration: none;
+    }
 
-        nav a {
-            color: var(--color-nav-link);
-            text-decoration: none;
-            padding: 10px 20px;
-            border: 2px solid transparent;
-            transition: var(--transition);
-        }
+    .btn-custom:hover {
+      background-color: var(--color-btn-bg-hover);
+      color: white;
+    }
 
-        nav a:hover {
-            background: var(--color-nav-link-hover);
-            color: #fff;
-            border-radius: 8px;
-        }
+    .about-container {
+      background: var(--color-lime-light);
+      border-radius: var(--border-radius);
+      box-shadow: 0 0 25px var(--color-shadow-subtle);
+    }
 
-        .hero {
-            padding: 80px 20px;
-            color: rgb(125, 43, 102);
-            box-shadow: inset 0 0 120px #00000099;
-        }
+    footer {
+      background: var(--color-blue-light);
+      padding: 15px;
+      color: #4c4c4c;
+      font-size: 14px;
+      border-top: 1px solid var(--color-border);
+      text-align: center;
+    }
+  </style>
 
-        .hero h1 {
-            font-size: 3rem;
-            color: #fff;
-            text-shadow: 0 0 12px var(--color-orange);
-        }
+  <!-- Bootstrap Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-        .hero p {
-            font-size: 1.2rem;
-            margin-top: 15px;
-        }
-
-        .btn {
-            background: var(--color-btn-bg);
-            color: var(--color-btn-text);
-            padding: 14px 32px;
-            border-radius: var(--border-radius);
-            font-size: 18px;
-            font-weight: bold;
-            margin-top: 30px;
-            text-decoration: none;
-            box-shadow: 0 0 15px var(--color-orange-light);
-            transition: background var(--transition);
-        }
-
-        .btn:hover {
-            background: var(--color-btn-bg-hover);
-        }
-
-        .about-container {
-            background: var(--color-lime-light);
-            padding: 40px;
-            margin: 60px auto;
-            max-width: var(--max-width);
-            border-radius: var(--border-radius);
-            box-shadow: 0 0 25px var(--color-shadow-subtle);
-        }
-
-        .about-container h2 {
-            font-size: 2rem;
-            color: var(--color-orange);
-            margin-bottom: 20px;
-        }
-
-        .about-container p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: var(--color-text);
-        }
-
-        footer {
-            background: var(--color-blue-light);
-            padding: 15px;
-            color: #4c4c4c;
-            font-size: 14px;
-            margin-top: 40px;
-            border-top: 1px solid var(--color-border);
-        }
-    </style>
-    <script>
-        setTimeout(function () {
-            document.getElementById("loading-screen").style.display = "none";
-            document.getElementById("main-content").style.display = "block";
-        }, 3000);
-    </script>
+  <script>
+    setTimeout(() => {
+      document.getElementById("loading-screen").style.display = "none";
+      document.getElementById("main-content").style.display = "block";
+    }, 2000);
+  </script>
 </head>
 <body>
-    <div id="loading-screen">
-        <img src="THE AGROHYDROS.png" alt="AgroHydros Logo" class="logo">
-        <h2>Loading AgroHydros Interface...</h2>
-    </div>
 
-    <div id="main-content">
-        <header>AGROHYDROS — SCI-FI SMART IRRIGATION TECH</header>
+  <!-- Loading Screen -->
+  <div id="loading-screen">
+    <img src="THE AGROHYDROS.png" alt="AgroHydros Logo" class="logo" />
+    <h2 style="align-self: center;" class="mt-3">Loading AgroHydros Interface...</h2>
+  </div>
 
-        <nav>
-            <a href="features.html">Features</a>
-            <a href="pricing.html">Pricing</a>
-            <a href="contact.html">Contact</a>
-        </nav>
+  <!-- Main Content -->
+  <div id="main-content">
+    <header>AGROHYDROS — SCI-FI SMART IRRIGATION TECH</header>
 
-        <section class="hero">
-            <h1>Revolutionizing Smart Irrigation</h1>
-            <p>Optimizing water usage with AI-driven automation and cosmic precision.</p>
-        </section>
+    <nav class="navbar navbar-expand-sm justify-content-center py-2">
+      <a class="nav-link" href="features.html">Features</a>
+      <a class="nav-link" href="pricing.html">Pricing</a>
+      <a class="nav-link" href="contact.html">Contact</a>
+    </nav>
 
-        <section class="about-container">
-            <h2>🌱 What is AgroHydros?</h2>
-            <p>
-                AgroHydros is not just another irrigation tool — it's a futuristic system built for intelligent agriculture. Using adaptive AI, sensor fusion, and real-time analytics, it ensures every drop of water counts. Designed for planetary-scale efficiency, AgroHydros is your leap into sustainable farming with sci-fi edge.
-            </p>
-        </section>
+    <section class="hero">
+      <div class="container">
+        <h1>Revolutionizing Smart Irrigation</h1>
+        <p>Optimizing water usage with AI-driven automation and cosmic precision.</p>
+        <a href="features.html" class="btn-custom mt-4 d-inline-block">Explore Features</a>
+      </div>
+    </section>
 
-        <footer>
-            &copy; 2025 AgroHydros. Engineered for Tomorrow.
-        </footer>
-    </div>
+    <section class="about-container container my-5 p-4">
+      <h2 class="text-primary mb-3">🌱 What is AgroHydros?</h2>
+      <p class="fs-5">
+        AgroHydros is not just another irrigation tool — it's a futuristic system built for intelligent agriculture. Using adaptive AI, sensor fusion, and real-time analytics, it ensures every drop of water counts. Designed for planetary-scale efficiency, AgroHydros is your leap into sustainable farming with sci-fi edge.
+      </p>
+    </section>
+
+    <footer>
+      &copy; 2025 AgroHydros. Engineered for Tomorrow.
+    </footer>
+  </div>
 </body>
 </html>
