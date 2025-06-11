@@ -138,6 +138,48 @@
       text-align: center;
     }
   </style>
+<!-- 🌿 AgroHydros Chatbot Trigger -->
+<style>
+  #chatbot-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #6ee7b7;
+    color: #536453;
+    border: none;
+    padding: 15px;
+    border-radius: 50%;
+    font-size: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    cursor: pointer;
+    z-index: 1000;
+  }
+
+  #chatbot-iframe {
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    width: 380px;
+    height: 500px;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 0 20px #6ee7b7;
+    display: none;
+    z-index: 1000;
+  }
+</style>
+
+<button id="chatbot-btn">💬</button>
+<iframe id="chatbot-iframe" src="xyz.html" allow="clipboard-write"></iframe>
+
+<script>
+  const chatbotBtn = document.getElementById("chatbot-btn");
+  const chatbotIframe = document.getElementById("chatbot-iframe");
+
+  chatbotBtn.onclick = () => {
+    chatbotIframe.style.display = chatbotIframe.style.display === "none" ? "block" : "none";
+  };
+</script>
 
   <!-- Bootstrap Bundle JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
