@@ -1,64 +1,200 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AgroHydros</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet" />
     <style>
         :root {
-            --bg-color: #171D31;
-            --text-color: white;
-            --nav-bg: #222845;
-            --card-bg: #1F263F;
-            --btn-bg: #D6B835;
-            --btn-hover: #B89E2D;
+            /* Base Colors */
+            --color-bg: #ffffff;
+            --color-text: #6b7280;
+            --color-heading: #111827;
+
+            /* Primary Theme */
+            --color-accent: #0d9488;
+            --color-accent-light: #ccfbf1;
+
+            /* Additional Accents */
+            --color-orange: #0b2d5d;
+            --color-orange-light: #ffedd5;
+            --color-blue: #2563eb;
+            --color-blue-light: #dbeafe;
+            --color-lime: #84cc16;
+            --color-lime-light: #ecfccb;
+
+            /* Button Colors */
+            --color-btn-bg: var(--color-orange);
+            --color-btn-bg-hover: #ea580c;
+            --color-btn-text: #ffffff;
+
+            /* Navigation */
+            --color-nav-link: var(--color-blue);
+            --color-nav-link-hover: #333538;
+
+            /* Shadows & Borders */
+            --color-shadow-light: rgba(13, 148, 136, 0.12);
+            --color-shadow-subtle: rgba(0, 0, 0, 0.05);
+            --color-border: #e5e7eb;
+
+            --border-radius: 0.75rem;
+            --max-width: 1200px;
+            --transition: 0.3s ease;
         }
 
-        body { background: var(--bg-color); color: var(--text-color); font-family: Arial, sans-serif; margin: 0; padding: 0; text-align: center; }
-        
-        /* Loading Screen */
-        #loading-screen { position: fixed; width: 100%; height: 100vh; background: var(--bg-color); display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 999; }
-        .logo { width: 150px; }
-        h2 { margin-top: 20px; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-        /* Main Content (Initially Hidden) */
-        #main-content { display: none; }
+        body {
+            background: var(--color-bg);
+            color: var(--color-text);
+            font-family: 'Orbitron', sans-serif;
+            text-align: center;
+        }
 
-        header { background: var(--nav-bg); padding: 20px; font-size: 24px; }
-        nav { display: flex; justify-content: center; background: var(--nav-bg); padding: 10px; }
-        nav a { color: white; text-decoration: none; padding: 10px 20px; margin: 0 10px; transition: 0.3s; }
-        nav a:hover { background: var(--btn-bg); border-radius: 5px; }
-        .hero { text-align: center; padding: 50px 20px; background: url('https://source.unsplash.com/1600x900/?farm,irrigation') center/cover; color: white; }
-        .hero h1 { font-size: 40px; text-shadow: 2px 2px 8px rgba(0,0,0,0.7); }
-        .hero p { font-size: 18px; margin-top: 10px; }
-        .btn { background: var(--btn-bg); color: black; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-size: 18px; display: inline-block; margin-top: 20px; cursor: pointer; border: none; }
-        .btn:hover { background: var(--btn-hover); }
-        .features { display: flex; justify-content: center; flex-wrap: wrap; padding: 40px; }
-        .feature-box { width: 300px; padding: 20px; margin: 15px; background: var(--card-bg); border-radius: 10px; text-align: center; }
-        .feature-box img { width: 80px; margin-bottom: 10px; }
-        footer { background: var(--nav-bg); text-align: center; padding: 10px; margin-top: 20px; }
+        #loading-screen {
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(135deg, var(--color-accent-light), var(--color-blue-light));
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+        }
 
+        .logo {
+            width: 180px;
+            filter: drop-shadow(0 0 10px var(--color-accent));
+        }
+
+        h2 {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            color: var(--color-accent);
+        }
+
+        #main-content {
+            display: none;
+        }
+
+        header {
+            background: var(--color-blue-light);
+            padding: 20px;
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--color-blue);
+            letter-spacing: 2px;
+            box-shadow: 0 4px 12px var(--color-shadow-light);
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            background: var(--color-blue-light);
+            padding: 15px;
+        }
+
+        nav a {
+            color: var(--color-nav-link);
+            text-decoration: none;
+            padding: 10px 20px;
+            border: 2px solid transparent;
+            transition: var(--transition);
+        }
+
+        nav a:hover {
+            background: var(--color-nav-link-hover);
+            color: #fff;
+            border-radius: 8px;
+        }
+
+        .hero {
+            padding: 80px 20px;
+            color: rgb(125, 43, 102);
+            box-shadow: inset 0 0 120px #00000099;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            color: #fff;
+            text-shadow: 0 0 12px var(--color-orange);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-top: 15px;
+        }
+
+        .btn {
+            background: var(--color-btn-bg);
+            color: var(--color-btn-text);
+            padding: 14px 32px;
+            border-radius: var(--border-radius);
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 30px;
+            text-decoration: none;
+            box-shadow: 0 0 15px var(--color-orange-light);
+            transition: background var(--transition);
+        }
+
+        .btn:hover {
+            background: var(--color-btn-bg-hover);
+        }
+
+        .about-container {
+            background: var(--color-lime-light);
+            padding: 40px;
+            margin: 60px auto;
+            max-width: var(--max-width);
+            border-radius: var(--border-radius);
+            box-shadow: 0 0 25px var(--color-shadow-subtle);
+        }
+
+        .about-container h2 {
+            font-size: 2rem;
+            color: var(--color-orange);
+            margin-bottom: 20px;
+        }
+
+        .about-container p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--color-text);
+        }
+
+        footer {
+            background: var(--color-blue-light);
+            padding: 15px;
+            color: #4c4c4c;
+            font-size: 14px;
+            margin-top: 40px;
+            border-top: 1px solid var(--color-border);
+        }
     </style>
     <script>
-        // Hide the loading screen after 3 seconds
-        setTimeout(function() {
+        setTimeout(function () {
             document.getElementById("loading-screen").style.display = "none";
             document.getElementById("main-content").style.display = "block";
         }, 3000);
     </script>
 </head>
 <body>
-
-    <!-- Loading Screen -->
     <div id="loading-screen">
         <img src="THE AGROHYDROS.png" alt="AgroHydros Logo" class="logo">
-        <h2>Loading AgroHydros...</h2>
+        <h2>Loading AgroHydros Interface...</h2>
     </div>
 
-    <!-- Main Content -->
     <div id="main-content">
-        <header>AgroHydros – Smarter Irrigation for a Sustainable Future</header>
-        
+        <header>AGROHYDROS — SCI-FI SMART IRRIGATION TECH</header>
+
         <nav>
             <a href="features.html">Features</a>
             <a href="pricing.html">Pricing</a>
@@ -67,32 +203,19 @@
 
         <section class="hero">
             <h1>Revolutionizing Smart Irrigation</h1>
-            <p>Optimizing water usage with AI-driven automation.</p>
-            <a href="features.html" class="btn">Explore Features</a>  <!-- ✅ Fixed this button -->
+            <p>Optimizing water usage with AI-driven automation and cosmic precision.</p>
         </section>
 
-        <section class="features">
-            <div class="feature-box">
-                <img src="https://img.icons8.com/ios-filled/100/D6B835/environment.png" alt="Eco-Friendly">
-                <h3>🌱 Smart Soil Monitoring</h3>
-                <p>Real-time soil moisture tracking with precision irrigation.</p>
-            </div>
-            <div class="feature-box">
-                <img src="https://img.icons8.com/ios-filled/100/D6B835/wifi.png" alt="Remote Control">
-                <h3>📡 Wi-Fi Connectivity</h3>
-                <p>Control and monitor your irrigation remotely via a mobile app.</p>
-            </div>
-            <div class="feature-box">
-                <img src="https://img.icons8.com/ios-filled/100/D6B835/water.png" alt="Water Conservation">
-                <h3>💧 Water Conservation</h3>
-                <p>Reduces water wastage by delivering precise irrigation.</p>
-            </div>
+        <section class="about-container">
+            <h2>🌱 What is AgroHydros?</h2>
+            <p>
+                AgroHydros is not just another irrigation tool — it's a futuristic system built for intelligent agriculture. Using adaptive AI, sensor fusion, and real-time analytics, it ensures every drop of water counts. Designed for planetary-scale efficiency, AgroHydros is your leap into sustainable farming with sci-fi edge.
+            </p>
         </section>
 
         <footer>
-            &copy; 2025 AgroHydros. All Rights Reserved.
+            &copy; 2025 AgroHydros. Engineered for Tomorrow.
         </footer>
     </div>
-
 </body>
 </html>

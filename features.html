@@ -1,74 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AgroHydros Features</title>
-    <style>
-        :root {
-            --bg-color: #171D31;
-            --text-color: white;
-            --nav-bg: #222845;
-            --card-bg: #1F263F;
-            --btn-bg: #D6B835;
-            --btn-hover: #B89E2D;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AgroHydros Features</title>
 
-        body { background: var(--bg-color); color: var(--text-color); font-family: Arial, sans-serif; margin: 0; padding: 0; text-align: center; }
-        
-        header { background: var(--nav-bg); padding: 20px; font-size: 24px; }
-        nav { display: flex; justify-content: center; background: var(--nav-bg); padding: 10px; }
-        nav a { color: white; text-decoration: none; padding: 10px 20px; margin: 0 10px; transition: 0.3s; }
-        nav a:hover { background: var(--btn-bg); border-radius: 5px; }
-        .container { display: flex; flex-wrap: wrap; justify-content: center; padding: 40px; }
-        .feature-box { width: 300px; padding: 20px; margin: 15px; background: var(--card-bg); border-radius: 10px; text-align: center; }
-        .feature-box img { width: 80px; margin-bottom: 10px; }
-        .btn { background: var(--btn-bg); color: black; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-size: 18px; display: inline-block; margin-top: 20px; cursor: pointer; border: none; }
-        .btn:hover { background: var(--btn-hover); }
-        footer { background: var(--nav-bg); text-align: center; padding: 10px; margin-top: 20px; }
-    </style>
+  <!-- ✅ Bootstrap CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <style>
+    :root {
+      --color-bg: #ffffff;
+      --color-text: #6b7280;
+      --color-heading: #111827;
+      --color-accent: #0d9488;
+      --color-accent-light: #ccfbf1;
+      --color-orange: #f97316;
+      --color-orange-light: #ffedd5;
+      --color-blue: #2563eb;
+      --color-blue-light: #dbeafe;
+      --color-lime: #84cc16;
+      --color-lime-light: #ecfccb;
+      --color-btn-bg: var(--color-orange);
+      --color-btn-bg-hover: #ea580c;
+      --color-btn-text: #ffffff;
+      --color-nav-link: var(--color-blue);
+      --color-nav-link-hover: #1d4ed8;
+      --color-shadow-light: rgba(13, 148, 136, 0.12);
+      --color-shadow-subtle: rgba(0, 0, 0, 0.05);
+      --color-border: #e5e7eb;
+      --border-radius: 0.75rem;
+    }
+
+    body {
+      background: var(--color-bg);
+      color: var(--color-text);
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+    }
+
+    header {
+      background: var(--color-blue-light);
+      padding: 20px;
+      font-size: 24px;
+      font-weight: bold;
+      color: var(--color-blue);
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      background: var(--color-blue-light);
+      padding: 10px;
+    }
+
+    nav a {
+      color: var(--color-nav-link);
+      text-decoration: none;
+      padding: 10px 20px;
+      margin: 0 10px;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      background: var(--color-nav-link-hover);
+      color: white;
+      border-radius: 5px;
+    }
+
+    h2.section-title {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 40px;
+      color: var(--color-orange);
+    }
+
+    .feature-card {
+      background-color: var(--color-lime-light);
+      padding: 25px;
+      border-radius: 10px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 0 15px var(--color-shadow-light);
+      transition: transform 0.2s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .feature-title {
+      font-size: 20px;
+      color: var(--color-accent);
+      margin-bottom: 15px;
+    }
+
+    .feature-desc {
+      font-size: 15px;
+      color: var(--color-text);
+    }
+
+    footer {
+      background: var(--color-blue-light);
+      text-align: center;
+      padding: 15px;
+      margin-top: 40px;
+      font-size: 14px;
+      color: #4c4c4c;
+    }
+  </style>
 </head>
 <body>
 
-    <header>Key Features of AgroHydros</header>
+  <header>Key Features of AgroHydros</header>
 
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="pricing.html">Pricing</a>
-        <a href="contact.html">Contact</a>
-    </nav>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="contact.html">Contact</a>
+  </nav>
 
-    <section class="container">
-        <div class="feature-box">
-            <img src="https://img.icons8.com/ios-filled/100/D6B835/environment.png" alt="Eco-Friendly">
-            <h3>🌱 Smart Soil Monitoring</h3>
-            <p>Uses real-time sensors to optimize irrigation.</p>
+  <section id="features" class="py-5">
+    <div class="container">
+      <h2 class="section-title">Key Features</h2>
+      <div class="row g-4">
+        <!-- 9 Features -->
+        <div class="col-md-4">
+          <div class="feature-card">
+            <h3 class="feature-title">Intelligent Irrigation</h3>
+            <p class="feature-desc">Precise watering based on real-time soil moisture to prevent over- and under-watering, promoting optimal plant growth.</p>
+          </div>
         </div>
-        <div class="feature-box">
-            <img src="https://img.icons8.com/ios-filled/100/D6B835/wifi.png" alt="Remote Control">
-            <h3>📡 Wi-Fi Connectivity</h3>
-            <p>Control irrigation remotely via a mobile app.</p>
+        <div class="col-md-4">
+          <div class="feature-card">
+            <h3 class="feature-title">Advanced Mobile Application</h3>
+            <p class="feature-desc">Real-time notifications and analytics offering full visibility of your irrigation system to enhance control and plant care.</p>
+          </div>
         </div>
-        <div class="feature-box">
-            <img src="https://img.icons8.com/ios-filled/100/D6B835/water.png" alt="Water Conservation">
-            <h3>💧 Water Conservation</h3>
-            <p>Reduces water wastage by delivering precise irrigation.</p>
+        <div class="col-md-4">
+          <div class="feature-card">
+            <h3 class="feature-title">Sustainability & Environmental Impact</h3>
+            <p class="feature-desc">Reduces water and energy usage with long-lasting, low-power sensors for an eco-friendly irrigation solution.</p>
+          </div>
         </div>
-        <div class="feature-box">
-            <img src="https://img.icons8.com/ios-filled/100/D6B835/graph.png" alt="Data Analysis">
-            <h3>📊 Real-Time Data</h3>
-            <p>Live soil moisture readings displayed on an LCD and app dashboard.</p>
+        <div class="col-md-4">
+          <div class="feature-card">
+            <h3 class="feature-title">Customization & Scalability</h3>
+            <p class="feature-desc">Tailor soil moisture thresholds and expand easily for small gardens to large farms or commercial landscapes.</p>
+          </div>
         </div>
-        <div class="feature-box">
-            <img src="https://img.icons8.com/ios-filled/100/D6B835/money-bag.png" alt="Cost Efficient">
-            <h3>💰 Cost Efficient</h3>
-            <p>Affordable pricing starting at ₹2000, making automation accessible.</p>
+        <div class="col-md-4">
+          <div class="feature-card">
+            <h3 class="feature-title">Smart Home Integration</h3>
+            <p class="feature-desc">Integrates with Google Home, Amazon Alexa, and adapts irrigation dynamically with machine learning and weather forecasts.</p>
+          </div>
         </div>
-    </section>
+        <div class="col-md-4">
+          <div class="feature-card">
+            <h3 class="feature-title">Real-Time Alerts & Data Insights</h3>
+            <p class="feature-desc">Immediate alerts for system status, watering events, plus detailed analytics on water usage and plant health.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="feature-card">
+            <h3 class="feature-title">Cost-Effective & High Value</h3>
+            <p class="feature-desc">Delivering advanced functionality at competitive pricing with long-term savings from automation and reduced labor.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="feature-card">
+            <h3 class="feature-title">Easy Installation & Support</h3>
+            <p class="feature-desc">Quick setup requiring minimal expertise with 24/7 customer support and detailed guides for smooth operation.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="feature-card">
+            <h3 class="feature-title">Long-Term Agricultural Impact</h3>
+            <p class="feature-desc">Boost crop yields and promote environmentally responsible agriculture with sustainable water management.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <footer>
-        &copy; 2025 AgroHydros. All Rights Reserved.
-    </footer>
+  <footer>
+    &copy; 2025 AgroHydros. All Rights Reserved.
+  </footer>
 
 </body>
 </html>

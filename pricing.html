@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js";
-    import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-firestore.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
+    import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyCL_OeCQjVE6oZw85HmCIalSZfRpCSlS-o",
@@ -18,7 +18,6 @@
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
-    // Expose Firestore to window for inline scripts
     window.db = db;
     window.collection = collection;
     window.addDoc = addDoc;
@@ -28,50 +27,78 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AgroHydros Pricing</title>
-
   <style>
     :root {
-      --bg-color: #171D31;
-      --text-color: white;
-      --nav-bg: #222845;
-      --card-bg: #1F263F;
-      --btn-bg: #D6B835;
-      --btn-hover: #B89E2D;
+      /* Base Colors */
+      --color-bg: #ffffff;
+      --color-text: #6b7280;
+      --color-heading: #111827;
+
+      /* Primary Theme */
+      --color-accent: #0d9488;
+      --color-accent-light: #ccfbf1;
+
+      /* Additional Accents */
+      --color-orange: #0b2d5d;
+      --color-orange-light: #ffedd5;
+      --color-blue: #2563eb;
+      --color-blue-light: #dbeafe;
+      --color-lime: #84cc16;
+      --color-lime-light: #ecfccb;
+
+      /* Button Colors */
+      --color-btn-bg: var(--color-orange);
+      --color-btn-bg-hover: #ea580c;
+      --color-btn-text: #ffffff;
+
+      /* Navigation */
+      --color-nav-link: var(--color-blue);
+      --color-nav-link-hover: #333538;
+
+      /* Shadows & Borders */
+      --color-shadow-light: rgba(13, 148, 136, 0.12);
+      --color-shadow-subtle: rgba(0, 0, 0, 0.05);
+      --color-border: #e5e7eb;
+
+      --border-radius: 0.75rem;
+      --max-width: 1200px;
+      --transition: 0.3s ease;
     }
 
     body {
-      background: var(--bg-color);
-      color: var(--text-color);
-      font-family: Arial, sans-serif;
+      background: var(--color-accent-light);
+      color: var(--color-text);
+      font-family: 'Roboto', sans-serif;
       margin: 0;
       padding: 0;
       text-align: center;
     }
 
     header {
-      background: var(--nav-bg);
+      background: var(--color-accent);
       padding: 20px;
       font-size: 24px;
+      box-shadow: 0 4px 10px var(--color-shadow-light);
+      color: var(--color-heading);
     }
 
     nav {
       display: flex;
       justify-content: center;
-      background: var(--nav-bg);
+      background: var(--color-accent);
       padding: 10px;
     }
 
     nav a {
-      color: white;
+      color: var(--color-nav-link);
       text-decoration: none;
       padding: 10px 20px;
       margin: 0 10px;
-      transition: 0.3s;
+      transition: color var(--transition);
     }
 
     nav a:hover {
-      background: var(--btn-bg);
-      border-radius: 5px;
+      color: var(--color-nav-link-hover);
     }
 
     .pricing-container {
@@ -85,45 +112,54 @@
       width: 300px;
       padding: 20px;
       margin: 15px;
-      background: var(--card-bg);
-      border-radius: 10px;
+      background: var(--color-bg);
+      border-radius: var(--border-radius);
       text-align: center;
+      box-shadow: 0 4px 20px var(--color-shadow-light);
+      transition: transform var(--transition);
+    }
+
+    .pricing-box:hover {
+      transform: translateY(-5px);
     }
 
     .pricing-box h2 {
-      color: var(--btn-bg);
+      color: var(--color-heading);
     }
 
     .price {
       font-size: 18px;
-      color: var(--btn-bg);
+      color: var(--color-btn-bg);
       font-weight: bold;
     }
 
     .btn {
-      background: var(--btn-bg);
-      color: black;
+      background: var(--color-btn-bg);
+      color: var(--color-btn-text);
       padding: 10px 20px;
-      border-radius: 5px;
+      border-radius: var(--border-radius);
       cursor: pointer;
       border: none;
       font-size: 16px;
       margin-top: 10px;
+      transition: background var(--transition), transform var(--transition);
     }
 
     .btn:hover {
-      background: var(--btn-hover);
+      background: var(--color-btn-bg-hover);
+      transform: scale(1.05);
     }
 
     .quote-form {
       text-align: center;
       margin-top: 20px;
       padding: 20px;
-      background: var(--card-bg);
-      border-radius: 10px;
+      background: var(--color-bg);
+      border-radius: var(--border-radius);
       max-width: 400px;
       margin-left: auto;
       margin-right: auto;
+      box-shadow: 0 4px 20px var(--color-shadow-light);
     }
 
     input,
@@ -131,22 +167,22 @@
       width: 100%;
       padding: 10px;
       margin-top: 10px;
-      border-radius: 5px;
-      border: 1px solid var(--btn-bg);
-      background: #222845;
-      color: white;
+      border-radius: var(--border-radius);
+      border: 1px solid var(--color-border);
+      background: var(--color-bg);
+      color: var(--color-text);
     }
 
     input::placeholder,
     select {
-      color: #D6B835;
+      color: var(--color-text);
     }
 
     footer {
       margin-top: 40px;
       padding: 15px;
-      background: var(--nav-bg);
-      color: var(--btn-bg);
+      background: var(--color-accent);
+      color: var(--color-btn-text);
       font-size: 14px;
     }
   </style>
@@ -179,7 +215,7 @@
     <p>Tell us your needs, and we’ll provide the best pricing for you!</p>
     <input type="text" id="name" placeholder="Your Name" required />
     <input type="email" id="email" placeholder="Your Email" required />
-      <input type="tel" id="mobile" placeholder="Your Mobile Number" required pattern="[0-9]{10}" title="Enter a 10-digit mobile number" />
+    <input type="tel" id="mobile" placeholder="Your Mobile Number" required pattern="[0-9]{10}" title="Enter a 10-digit mobile number" />
     <select id="requirement" required>
       <option value="">Select Your Requirement</option>
       <option value="Base System">Base System</option>
@@ -195,18 +231,17 @@
     async function requestQuote() {
       const name = document.getElementById("name").value.trim();
       const email = document.getElementById("email").value.trim();
-        const mobile = document.getElementById("mobile").value.trim();
+      const mobile = document.getElementById("mobile").value.trim();
       const requirement = document.getElementById("requirement").value;
 
       if (!name || !email || !requirement) {
         alert("Please fill in all details to request a quote.");
         return;
-        
       }
-    if (!/^\d{10}$/.test(mobile)) {
-    alert("Please enter a valid 10-digit mobile number.");
-    return;
-                                     }
+      if (!/^\d{10}$/.test(mobile)) {
+        alert("Please enter a valid 10-digit mobile number.");
+        return;
+      }
       try {
         await addDoc(collection(db, "quotes"), {
           name: name,
@@ -218,10 +253,9 @@
 
         alert(`Thank you, ${name}! We have received your request and will contact you soon.`);
 
-        // Clear the form inputs
         document.getElementById("name").value = "";
         document.getElementById("email").value = "";
-            document.getElementById("mobile").value = "";
+        document.getElementById("mobile").value = "";
         document.getElementById("requirement").value = "";
       } catch (error) {
         console.error("Error submitting quote:", error);
